@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "desktop",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "desktop": {
+      "projectType": "application",
+      "root": "apps/desktop",
+      "sourceRoot": "apps/desktop/src",
+      "prefix": "dgrbrady",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/desktop",
+            "index": "apps/desktop/src/index.html",
+            "main": "apps/desktop/src/main.ts",
+            "polyfills": "apps/desktop/src/polyfills.ts",
+            "tsConfig": "apps/desktop/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/desktop/src/favicon.ico",
+              "apps/desktop/src/assets"
+            ],
+            "styles": ["apps/desktop/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/desktop/src/environments/environment.ts",
+                  "with": "apps/desktop/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "desktop:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "desktop:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "desktop:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/desktop/src/**/*.ts",
+              "apps/desktop/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/desktop"],
+          "options": {
+            "jestConfig": "apps/desktop/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "desktop-e2e": {
+      "root": "apps/desktop-e2e",
+      "sourceRoot": "apps/desktop-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/desktop-e2e/cypress.json",
+            "tsConfig": "apps/desktop-e2e/tsconfig.e2e.json",
+            "devServerTarget": "desktop:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "desktop:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/desktop-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
