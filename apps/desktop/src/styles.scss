@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import './theme.scss';
 /* You can add global styles to this file, and also import other style files */
 
@@ -6,12 +7,26 @@
     --#{$key}: #{$value};
   }
   --font-family: 'Courier New', Courier, monospace;
-  --font-size: 14px;
+  --font-size: 16px;
 }
 
 body {
-  background-color: var(--background);
+  background-image: repeating-linear-gradient(
+      transparent,
+      #ccc 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(to bottom, transparent 50%, var(--background) 50%),
+    radial-gradient(
+      circle closest-side,
+      color.adjust(map-get($colors, danger), $lightness: -5%) 50%,
+      transparent 50%
+    ),
+    linear-gradient(var(--warn) 5%, var(--danger) 50%, var(--background) 50%);
   color: var(--foreground);
   font-family: var(--font-family);
   font-size: var(--font-size);
+  line-height: 16px;
+  height: 100vh;
 }
