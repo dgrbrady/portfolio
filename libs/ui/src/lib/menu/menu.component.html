@@ -1,1 +1,21 @@
-<p>menu works!</p>
+<section class="menu">
+  <ng-container
+    [ngTemplateOutlet]="menuTemplate"
+    [ngTemplateOutletContext]="{ $implicit: menuItems }"
+  ></ng-container>
+</section>
+
+<!-- This template displays the overlay content-->
+<ng-template #menuTemplate let-menuItems>
+  <ul role="menu">
+    <li
+      #liElement
+      *ngFor="let item of menuItems"
+      role="menuitem"
+      [ngClass]="{ 'with-children': item.menuItems }"
+      (click)="onClick(item, liElement)"
+    >
+      {{ item.text }}
+    </li>
+  </ul>
+</ng-template>

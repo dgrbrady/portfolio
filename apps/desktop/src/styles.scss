@@ -1,8 +1,10 @@
 @use 'sass:color';
-@import './theme.scss';
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import 'libs/ui/src/lib/styles/theme';
+@import 'libs/ui/src/lib/styles/mixins/menu';
 
 :root {
+  // iterate over $colors sass map and set global CSS variables for easy access
   @each $key, $value in $colors {
     --#{$key}: #{$value};
   }
@@ -29,4 +31,16 @@ body {
   font-size: var(--font-size);
   line-height: 16px;
   height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  & * {
+    background-color: var(--background);
+  }
+
+  .cdk-overlay-container,
+  .cdk-overlay-connected-position-bounding-box {
+    background-color: transparent;
+    @include menu-styles();
+  }
 }

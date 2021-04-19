@@ -1,0 +1,59 @@
+@use 'sass:color';
+@import '../theme';
+
+@mixin menu-styles() {
+  .menu {
+    border: solid 1px var(--accent);
+    cursor: move;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    width: fit-content;
+    padding: 0.5em 0;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      justify-content: left;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+
+      width: fit-content;
+
+      li {
+        text-align: left;
+        min-width: 0;
+        flex: 1 0 100%;
+        padding: 0.5em;
+        cursor: pointer;
+        transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1);
+        display: inline-flex;
+        justify-content: space-between;
+
+        &.with-children {
+          border-right: solid 4px var(--primary);
+        }
+
+        &:hover {
+          background-color: color.adjust(
+            map-get($colors, background),
+            $lightness: 10%
+          );
+        }
+
+        &:active {
+          background-color: color.change(map-get($colors, accent), $alpha: 0.5);
+        }
+
+        .expand {
+          background-color: inherit;
+        }
+      }
+    }
+  }
+}
