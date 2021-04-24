@@ -1,3 +1,5 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 import { MenuItem } from '@dgrbrady/ui';
 
@@ -33,6 +35,16 @@ export class AppComponent {
         }
       ]
     },
-    { text: 'item 3', onClick: () => console.log('hi') }
+    {
+      text: 'item 3',
+      onClick: () => {
+        // const overlayRef = this.overlay.create();
+        // const windowPortal = new ComponentPortal(WindowComponent);
+        // windowPortal.component
+        // overlayRef.attach(windowPortal);
+      }
+    }
   ];
+
+  constructor(private overlay: Overlay) {}
 }

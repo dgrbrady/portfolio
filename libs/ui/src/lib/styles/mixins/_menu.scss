@@ -4,7 +4,6 @@
 @mixin menu-styles() {
   .menu {
     border: solid 1px var(--accent);
-    cursor: move;
     border-radius: 4px;
     position: relative;
     z-index: 1;
