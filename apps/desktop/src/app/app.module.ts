@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { UiModule } from '@dgrbrady/ui';
+import { DataModule } from '@dgrbrady/data';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, UiModule],
+  imports: [BrowserModule, UiModule, DataModule],
   providers: [],
   bootstrap: [AppComponent]
 })

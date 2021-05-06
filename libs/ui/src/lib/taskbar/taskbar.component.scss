@@ -1,0 +1,55 @@
+:host {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 42px;
+  padding: 0;
+  background-color: var(--accent);
+  border-top: 1px solid var(--primary);
+
+  * {
+    background-color: inherit;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 1rem;
+  overflow-x: hidden;
+
+  * {
+    background-color: var(--primary);
+    border: gray solid 2px;
+    border-style: outset;
+    cursor: pointer;
+    margin: 1px 0;
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+
+  .window {
+    display: flex;
+    flex: 0 1 8rem;
+    flex-direction: column;
+    text-align: center;
+
+    .window-title {
+      margin-top: auto;
+      margin-bottom: auto;
+      border: none;
+
+      &:active {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+      }
+    }
+  }
+}
+
+.start-menu-container {
+  position: absolute;
+  bottom: 42px;
+}

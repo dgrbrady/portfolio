@@ -1,0 +1,76 @@
+:host {
+  background-color: transparent;
+}
+
+.window {
+  border: 1px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  $glimmer: rgba(200, 200, 200, 0.2);
+
+  .window-header {
+    background-color: var(--primary);
+    background-image: linear-gradient(0.35turn, transparent 50%, $glimmer 50%);
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+
+    * {
+      background-color: inherit;
+    }
+
+    .window-title {
+      background: transparent;
+      margin: 0.5rem 2rem 0.5rem 0.2rem;
+    }
+
+    .window-controls {
+      padding-top: 5px;
+      padding-right: 2px;
+      width: 5rem;
+      background-image: linear-gradient(
+        0.35turn,
+        $glimmer 50%,
+        var(--primary) 50%
+      );
+      button {
+        cursor: pointer;
+        border-radius: 50%;
+        border: none;
+        height: 1rem;
+        width: 1rem;
+
+        &:not(:last-of-type) {
+          margin-right: 0.5rem;
+        }
+        &:active {
+          background-color: rgba(255, 255, 255, 0.5) !important;
+        }
+        &.minimize {
+          background-color: var(--warn);
+        }
+        &.maximize {
+          background-color: var(--accent);
+        }
+        &.close {
+          background-color: var(--danger);
+        }
+      }
+    }
+  }
+
+  &.maximized {
+    width: 100vw;
+    height: 100%;
+  }
+
+  &.minimized {
+    .window-header {
+      cursor: default;
+    }
+    .window-content {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<section
+  cdkDrag
+  [cdkDragDisabled]="state === 'minimized'"
+  cdkDragBoundary="body"
+  cdkDragRootElement=".cdk-overlay-pane"
+  class="window"
+  [ngClass]="{
+    minimized: state === 'minimized',
+    maximized: state === 'maximized'
+  }"
+>
+  <header class="window-header">
+    <h1 class="window-title">{{ config.title }}</h1>
+    <div class="window-controls">
+      <button
+        *ngIf="state !== 'minimized'"
+        class="minimize"
+        (click)="minimize()"
+      ></button>
+      <button class="maximize" (click)="maximize()"></button>
+      <button class="close" (click)="close()"></button>
+    </div>
+  </header>
+  <div class="window-content">
+    <ng-template dgrbradyWindowHost></ng-template>
+  </div>
+</section>
