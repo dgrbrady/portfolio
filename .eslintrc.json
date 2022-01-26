@@ -28,22 +28,18 @@
     },
     {
       "files": ["*.ts"],
+      "plugins": [ "sort-imports-es6-autofix"],
       "parserOptions": {
         "project": ["tsconfig.base.json", "./**/tsconfig.*.json"],
         "createDefaultProgram": true
       },
       "extends": ["eslint:recommended", "plugin:prettier/recommended"],
       "rules": {
-        "sort-imports": [
-          "error",
-          {
-            "ignoreCase": false,
-            "ignoreDeclarationSort": false,
-            "ignoreMemberSort": false,
-            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-            "allowSeparatedGroups": false
-          }
-        ]
+        "sort-imports-es6-autofix/sort-imports-es6": [2, {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        }]
       }
     },
     {

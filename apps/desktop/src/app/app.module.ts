@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UiModule } from '@dgrbrady/ui';
 import { DataModule } from '@dgrbrady/data';
+import { UiModule } from '@dgrbrady/ui';
 
 @NgModule({
   declarations: [AppComponent],
