@@ -51,7 +51,7 @@ export class TaskbarComponent {
             ),
         },
         {
-          text: 'PM UI',
+          text: 'PM-UI',
           onClick: () =>
             this.document.defaultView.open(
               'https://pm-ui.dgrbrady.dev',
