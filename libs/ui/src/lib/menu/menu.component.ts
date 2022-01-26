@@ -9,7 +9,7 @@ import {
   OnDestroy,
   TemplateRef,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { fromEvent } from 'rxjs';
@@ -21,7 +21,7 @@ import { MenuItem } from '../types';
   selector: 'dgrbrady-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent implements OnDestroy {
   @Input() menuItems: MenuItem[];
@@ -99,15 +99,15 @@ export class MenuComponent implements OnDestroy {
           originX: 'end',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'top'
-        } as ConnectedPosition
+          overlayY: 'top',
+        } as ConnectedPosition,
       ]);
     const overlayRef = this.overlay.create({
       panelClass: 'menu',
-      positionStrategy
+      positionStrategy,
     });
     const menuPortal = new TemplatePortal(this.menuTemplate, this.vcRef, {
-      $implicit: item.menuItems
+      $implicit: item.menuItems,
     });
     overlayRef.attach(menuPortal);
     this.overlayRefs.push(overlayRef);

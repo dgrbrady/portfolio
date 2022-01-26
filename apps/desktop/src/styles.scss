@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '~@angular/cdk/overlay-prebuilt.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 @import 'libs/ui/src/lib/styles/theme';
 @import 'libs/ui/src/lib/styles/mixins/menu';
 
@@ -37,10 +37,9 @@ body {
   & * {
     background-color: var(--background);
     color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .cdk-overlay-container,

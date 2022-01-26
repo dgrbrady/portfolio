@@ -6,13 +6,13 @@ import { WindowComponent } from '@dgrbrady/ui';
 import { TaskbarComponent } from '@dgrbrady/ui';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WindowService {
   defaultWindowConfig: Partial<WindowConfig> = {
     multiple: false,
     title: 'Untitled Window',
-    inputs: {}
+    inputs: {},
   };
   taskbar: TaskbarComponent;
   windows: ComponentRef<WindowComponent<unknown>>[] = [];
@@ -28,7 +28,7 @@ export class WindowService {
     config = { ...this.defaultWindowConfig, ...config };
     const windowPortal = new ComponentPortal(WindowComponent);
     const overlayRef = this.overlay.create({
-      panelClass: 'window-pane'
+      panelClass: 'window-pane',
     });
     const windowRef = overlayRef.attach(windowPortal);
     windowRef.instance.config = config;

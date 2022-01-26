@@ -9,6 +9,6 @@ import { DataModule } from '@dgrbrady/data';
   declarations: [AppComponent],
   imports: [BrowserModule, UiModule, DataModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

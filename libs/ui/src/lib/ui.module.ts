@@ -17,14 +17,14 @@ import { WindowService } from './types';
     MenuComponent,
     WindowComponent,
     WindowHostDirective,
-    TaskbarComponent
+    TaskbarComponent,
   ],
   exports: [
     LoadingComponent,
     MenuComponent,
     WindowComponent,
     WindowHostDirective,
-    TaskbarComponent
-  ]
+    TaskbarComponent,
+  ],
 })
 export class UiModule {}

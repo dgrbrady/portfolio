@@ -10,7 +10,7 @@ import {
   Input,
   OnInit,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { WindowHostDirective } from '../window-host.directive';
 import { WindowConfig, WindowService, WindowSize } from '@dgrbrady/ui';
@@ -20,7 +20,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
   selector: 'dgrbrady-window',
   templateUrl: './window.component.html',
   styleUrls: ['./window.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   @Input() config: WindowConfig<T>;
@@ -50,9 +50,10 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   }
 
   loadComponent(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-      this.config.component
-    );
+    const componentFactory =
+      this.componentFactoryResolver.resolveComponentFactory(
+        this.config.component
+      );
     const vcRef = this.windowHost.vcRef;
     vcRef.clear();
 
@@ -79,13 +80,13 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
             originX: 'center',
             originY: 'center',
             overlayX: 'center',
-            overlayY: 'center'
-          }
+            overlayY: 'center',
+          },
         ]);
       this.overlayRef.updatePositionStrategy(position);
       this.overlayRef.updateSize({
         width: this.size.width,
-        height: this.size.height
+        height: this.size.height,
       });
     } else {
       this.state = 'maximized';
@@ -98,8 +99,8 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
             originX: 'start',
             originY: 'top',
             overlayX: 'start',
-            overlayY: 'top'
-          }
+            overlayY: 'top',
+          },
         ]);
       this.overlayRef.updatePositionStrategy(position);
     }

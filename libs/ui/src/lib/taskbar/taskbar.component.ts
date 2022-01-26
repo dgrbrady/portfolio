@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input
+  Input,
 } from '@angular/core';
 import { WindowService } from '@dgrbrady/ui';
 import { LoadingComponent, MenuItem, WindowComponent } from '../types';
@@ -11,7 +11,7 @@ import { LoadingComponent, MenuItem, WindowComponent } from '../types';
   selector: 'dgrbrady-taskbar',
   templateUrl: './taskbar.component.html',
   styleUrls: ['./taskbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskbarComponent {
   @Input() windows: WindowComponent[] = [];
@@ -20,24 +20,27 @@ export class TaskbarComponent {
     {
       text: 'About',
       onClick: () =>
-        this.windowService.open({ title: 'About', component: LoadingComponent })
+        this.windowService.open({
+          title: 'About',
+          component: LoadingComponent,
+        }),
     },
     {
       text: 'Programs',
       onClick: () =>
         this.windowService.open({
           title: 'Programs',
-          component: LoadingComponent
-        })
+          component: LoadingComponent,
+        }),
     },
     {
       text: 'Projects',
       onClick: () =>
         this.windowService.open({
           title: 'Projects',
-          component: LoadingComponent
-        })
-    }
+          component: LoadingComponent,
+        }),
+    },
   ];
 
   constructor(

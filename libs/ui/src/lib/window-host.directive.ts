@@ -1,7 +1,7 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[dgrbradyWindowHost]'
+  selector: '[dgrbradyWindowHost]',
 })
 export class WindowHostDirective {
   constructor(public vcRef: ViewContainerRef) {}

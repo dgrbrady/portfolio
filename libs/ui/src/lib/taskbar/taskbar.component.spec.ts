@@ -8,9 +8,8 @@ describe('TaskbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskbarComponent ]
-    })
-    .compileComponents();
+      declarations: [TaskbarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
