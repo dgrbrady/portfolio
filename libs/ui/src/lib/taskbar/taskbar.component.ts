@@ -2,10 +2,16 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
   Input,
 } from '@angular/core';
-import { WindowService } from '@dgrbrady/ui';
-import { LoadingComponent, MenuItem, WindowComponent } from '../types';
+import { DOCUMENT } from '@angular/common';
+import {
+  LoadingComponent,
+  MenuItem,
+  WindowComponent,
+  WindowService,
+} from '../types';
 
 @Component({
   selector: 'dgrbrady-taskbar',
@@ -35,15 +41,29 @@ export class TaskbarComponent {
     },
     {
       text: 'Projects',
-      onClick: () =>
-        this.windowService.open({
-          title: 'Projects',
-          component: LoadingComponent,
-        }),
+      menuItems: [
+        {
+          text: 'GTFO',
+          onClick: () =>
+            this.document.defaultView.open(
+              'https://gtfo.dgrbrady.dev',
+              '_blank'
+            ),
+        },
+        {
+          text: 'PM UI',
+          onClick: () =>
+            this.document.defaultView.open(
+              'https://pm-ui.dgrbrady.dev',
+              '_blank'
+            ),
+        },
+      ],
     },
   ];
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private windowService: WindowService,
     private cdRef: ChangeDetectorRef
   ) {}

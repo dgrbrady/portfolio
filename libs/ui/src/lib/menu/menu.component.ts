@@ -1,6 +1,3 @@
-import { OverlayRef, Overlay, ConnectedPosition } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,10 +8,13 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { fromEvent } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
 import { MenuItem } from '../types';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { filter } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
