@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { WindowService, TaskbarComponent } from '@dgrbrady/ui';
+import { TaskbarComponent, WindowService } from '@dgrbrady/ui';
 
 @Component({
   selector: 'dgrbrady-root',
