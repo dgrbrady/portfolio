@@ -32,10 +32,7 @@
         "project": ["tsconfig.base.json", "./**/tsconfig.*.json"],
         "createDefaultProgram": true
       },
-      "extends": [
-        "eslint:recommended",
-        "plugin:prettier/recommended"
-      ],
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
       "rules": {
         "sort-imports": [
           "error",
