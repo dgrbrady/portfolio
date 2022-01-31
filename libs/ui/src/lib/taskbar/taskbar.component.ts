@@ -16,10 +16,10 @@ export class TaskbarComponent {
   startMenuOpened = false;
   startMenuItems: MenuItem[] = [
     {
-      text: 'About',
+      text: 'About.txt',
       onClick: () =>
         new OpenWindowCommand(this.windowService, {
-          title: 'About',
+          title: 'About.txt',
           component: AboutComponent,
         }).execute(),
     },
@@ -27,7 +27,7 @@ export class TaskbarComponent {
       text: 'Programs',
       menuItems: [
         {
-          text: 'Browser',
+          text: 'Browser.exe',
           onClick: () =>
             new OpenWindowCommand(this.windowService, {
               title: 'Browser',
@@ -40,7 +40,7 @@ export class TaskbarComponent {
       text: 'Projects',
       menuItems: [
         {
-          text: 'GTFO',
+          text: 'GTFO.exe',
           onClick: () =>
             new OpenWindowCommand(this.windowService, {
               component: BrowserComponent,
@@ -49,7 +49,7 @@ export class TaskbarComponent {
             }).execute(),
         },
         {
-          text: 'PM-UI',
+          text: 'PM-UI.exe',
           onClick: () =>
             new OpenWindowCommand(this.windowService, {
               component: BrowserComponent,
