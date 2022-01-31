@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Inject,
   Input,
   OnDestroy,
@@ -26,17 +27,14 @@ import { fromEvent } from 'rxjs';
 export class MenuComponent implements OnDestroy {
   @Input() menuItems: MenuItem[];
   @ViewChild('menuTemplate') menuTemplate: TemplateRef<unknown>;
-  openItems: MenuItem[] = [];
+  @ViewChild('menu') menu: ElementRef<HTMLElement>;
   activeItem: MenuItem;
   overlayRefs: OverlayRef[] = [];
   clicks = fromEvent<MouseEvent>(this.document, 'click')
     .pipe(
       filter(
-        (event) =>
-          !this.getAllMenus().some((element) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return element.contains(event.target as any);
-          })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (event) => !this.menu.nativeElement.contains(event.target as any)
       )
     )
     .subscribe(() => this.disposeOfMenus());
@@ -52,10 +50,6 @@ export class MenuComponent implements OnDestroy {
     this.overlayRefs = [];
   }
 
-  getAllMenus(): Element[] {
-    return Array.from(this.document.querySelectorAll('.menu'));
-  }
-
   ngOnDestroy(): void {
     this.disposeOfMenus();
   }
@@ -66,29 +60,15 @@ export class MenuComponent implements OnDestroy {
     } else {
       this.disposeOfMenus();
       this.activeItem = undefined;
-      this.openItems = [];
       item.onClick();
     }
   }
 
   showChildren(item: MenuItem, liElement: HTMLLIElement): void {
-    /* Needs work, should only allow one sibling menu open at a time */
-    // if (this.openItems.length > 0) {
-    //   if (liElement === this.openItems[this.openItems.length - 1]) {
-    //     return;
-    //   } else {
-    //     this.openItems.push(liElement);
-    //     const lastOverlayRef = this.overlayRefs.splice(
-    //       this.overlayRefs.length
-    //     )[0];
-    //     lastOverlayRef.dispose();
-    //   }
-    // } else {
-    //   this.openItems.push(liElement);
-    // }
-    if (this.openItems.some((openItem) => openItem.text === item.text)) {
-      return;
+    if (this.activeItem) {
+      this.disposeOfMenus();
     }
+
     this.activeItem = item;
     const positionStrategy = this.overlay
       .position()
