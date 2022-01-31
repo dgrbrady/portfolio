@@ -1,20 +1,20 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   Inject,
   Input,
   OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { WindowHostDirective } from '../window-host.directive';
-import { WindowConfig, WindowService, WindowSize } from '@dgrbrady/ui';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { WindowConfig, WindowSize } from '../types/window';
+import { WindowHostDirective } from '../window-host.directive';
+import { WindowService } from '../services/window.service';
 
 @Component({
   selector: 'dgrbrady-window',
@@ -35,7 +35,6 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private overlay: Overlay,
     private vcRef: ViewContainerRef,
     private cdRef: ChangeDetectorRef
@@ -50,14 +49,10 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   }
 
   loadComponent(): void {
-    const componentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(
-        this.config.component
-      );
     const vcRef = this.windowHost.vcRef;
     vcRef.clear();
 
-    const componentRef = vcRef.createComponent(componentFactory);
+    const componentRef = vcRef.createComponent(this.config.component);
     Object.entries(this.config.inputs).forEach(
       ([key, value]) => (componentRef.instance[key] = value)
     );
@@ -90,7 +85,11 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
       });
     } else {
       this.state = 'maximized';
-      this.overlayRef.updateSize({ width: '100%', height: '100vh' });
+      this.overlayRef.updateSize({
+        width: '100%',
+        // 74px is window header height + app taskbar height
+        height: 'calc(100% - 74px)',
+      });
       const position = this.overlay
         .position()
         .flexibleConnectedTo(this.document.body)

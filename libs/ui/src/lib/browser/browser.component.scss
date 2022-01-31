@@ -1,0 +1,19 @@
+.nav-bar {
+  display: flex;
+  // flex-wrap: wrap;
+  padding: 0.25rem;
+  input {
+    margin: 0 1rem;
+    flex: 1 1 100%;
+  }
+}
+
+.page {
+  background-color: white;
+  color: #111;
+  height: 100%;
+
+  #root-iframe {
+    border: none;
+  }
+}

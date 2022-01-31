@@ -1,0 +1,25 @@
+<div class="nav-bar">
+  <button (click)="back()">Back</button>
+  <button (click)="forward()">Forward</button>
+  <button (click)="refresh()">Refresh</button>
+  <input
+    type="text"
+    id="url"
+    name="url"
+    [formControl]="urlControl"
+    placeholder="Enter URL here"
+    (submit)="go()"
+  />
+  <button (click)="go()">Go</button>
+</div>
+<div class="page">
+  <iframe
+    id="root-iframe"
+    #iframe
+    width="100%"
+    height="100%"
+    referrerPolicy="no-referrer"
+    sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
+  >
+  </iframe>
+</div>

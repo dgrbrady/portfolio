@@ -1,3 +1,4 @@
+import { BrowserComponent } from '../browser/browser.component';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -33,11 +34,16 @@ export class TaskbarComponent {
     },
     {
       text: 'Programs',
-      onClick: () =>
-        this.windowService.open({
-          title: 'Programs',
-          component: LoadingComponent,
-        }),
+      menuItems: [
+        {
+          text: 'Browser',
+          onClick: () =>
+            this.windowService.open({
+              title: 'Browser',
+              component: BrowserComponent,
+            }),
+        },
+      ],
     },
     {
       text: 'Projects',
@@ -45,18 +51,20 @@ export class TaskbarComponent {
         {
           text: 'GTFO',
           onClick: () =>
-            this.document.defaultView.open(
-              'https://gtfo.dgrbrady.dev',
-              '_blank'
-            ),
+            this.windowService.open({
+              component: BrowserComponent,
+              title: 'Browser',
+              inputs: { url: 'https://gtfo.dgrbrady.dev' },
+            }),
         },
         {
           text: 'PM-UI',
           onClick: () =>
-            this.document.defaultView.open(
-              'https://pm-ui.dgrbrady.dev',
-              '_blank'
-            ),
+            this.windowService.open({
+              component: BrowserComponent,
+              title: 'Browser',
+              inputs: { url: 'https://pm-ui.dgrbrady.dev' },
+            }),
         },
       ],
     },

@@ -5,7 +5,7 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "plugins": [ "sort-imports-es6-autofix"],
+      "plugins": ["sort-imports-es6-autofix"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
@@ -20,11 +20,14 @@
             ]
           }
         ],
-        "sort-imports-es6-autofix/sort-imports-es6": [2, {
-          "ignoreCase": false,
-          "ignoreMemberSort": false,
-          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-        }]
+        "sort-imports-es6-autofix/sort-imports-es6": [
+          2,
+          {
+            "ignoreCase": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+          }
+        ]
       }
     },
     {
@@ -35,7 +38,11 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["tsconfig.base.json", "./**/tsconfig.*.json", "tsconfig.*.json"],
+        "project": [
+          "tsconfig.base.json",
+          "./**/tsconfig.*.json",
+          "tsconfig.*.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": ["eslint:recommended", "plugin:prettier/recommended"],

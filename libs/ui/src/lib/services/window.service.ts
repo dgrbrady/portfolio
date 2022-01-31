@@ -1,9 +1,7 @@
-import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Injectable } from '@angular/core';
-import { WindowConfig } from '../types';
-import { WindowComponent } from '@dgrbrady/ui';
-import { TaskbarComponent } from '@dgrbrady/ui';
+import { Overlay } from '@angular/cdk/overlay';
+import { TaskbarComponent, WindowComponent, WindowConfig } from '../types';
 
 @Injectable({
   providedIn: 'root',
