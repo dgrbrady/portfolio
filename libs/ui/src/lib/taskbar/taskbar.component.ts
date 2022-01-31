@@ -1,11 +1,7 @@
+import { AboutComponent } from '../about/about.component';
 import { BrowserComponent } from '../browser/browser.component';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {
-  LoadingComponent,
-  MenuItem,
-  WindowComponent,
-  WindowService,
-} from '../types';
+import { MenuItem, WindowComponent, WindowService } from '../types';
 import { OpenWindowCommand } from '../window/commands/open-window.command';
 import { ToggleWindowCommand } from '../window/commands/toggle-window.command';
 
@@ -24,7 +20,7 @@ export class TaskbarComponent {
       onClick: () =>
         new OpenWindowCommand(this.windowService, {
           title: 'About',
-          component: LoadingComponent,
+          component: AboutComponent,
         }).execute(),
     },
     {

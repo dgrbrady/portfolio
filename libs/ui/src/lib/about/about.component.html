@@ -1,0 +1,20 @@
+<h2>About Me</h2>
+<p>Hello! My name is David and I'm a full stack developer with a passion for 
+  all things web dev! My strengths are in Typescript and Angular, but I take an
+  eclectic approach to my developer arsenal and love learning new things!
+  Check out my links below :)
+</p>
+<ul>
+  <li *ngFor="let link of links">
+    <a  [href]="link.href" target="_blank"> {{link.text}}</a>
+  </li>
+</ul>
+
+<h2>About This Site</h2>
+<p>This site serves as a landing page to all my side projects 
+  (that I actually finish) and was made with love using Angular in an Nx
+  monorepo. There are no 3rd party libraries used. Everything you see has been
+  built from the ground up. My hope is that it will accurately showcase what I 
+  am capable of and serve as a time capsule for my growth in the future. 
+  I hope you enjoy!
+</p>

@@ -11,6 +11,7 @@ import { TaskbarComponent } from './taskbar/taskbar.component';
 import { WindowComponent } from './window/window.component';
 import { WindowHostDirective } from './window-host.directive';
 import { WindowService } from './types';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { WindowService } from './types';
     WindowHostDirective,
     TaskbarComponent,
     BrowserComponent,
+    AboutComponent,
   ],
   exports: [
     LoadingComponent,

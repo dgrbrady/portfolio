@@ -1,0 +1,17 @@
+h2 {
+  border-left: 4px solid var(--primary);
+  border-right: 4px solid var(--primary);
+  border-top: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
+  padding: 1rem;
+  margin: 0.5rem 0 0 0;
+}
+
+p {
+  padding: 1rem;
+  width: 500px;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
