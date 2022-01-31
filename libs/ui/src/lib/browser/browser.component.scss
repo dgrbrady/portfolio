@@ -1,7 +1,12 @@
 .nav-bar {
   display: flex;
-  // flex-wrap: wrap;
   padding: 0.25rem;
+  button {
+    cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
   input {
     margin: 0 1rem;
     flex: 1 1 100%;

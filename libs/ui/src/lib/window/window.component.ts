@@ -59,9 +59,9 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   }
 
   close() {
+    this.windowService.close(this);
     this.vcRef.clear();
     this.overlayRef.dispose();
-    this.windowService.closeWindow(this.index);
   }
 
   maximize() {
@@ -103,13 +103,13 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
         ]);
       this.overlayRef.updatePositionStrategy(position);
     }
+    this.overlayRef.removePanelClass('minimized');
     this.cdRef.detectChanges();
   }
 
   minimize() {
-    this.windowService.minimizeWindow(this);
-    this.vcRef.clear();
-    this.overlayRef.detach();
+    this.state = 'minimized';
+    this.overlayRef.addPanelClass('minimized');
   }
 
   captureCurrentSize(): void {

@@ -1,18 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { TaskbarComponent, WindowService } from '@dgrbrady/ui';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'dgrbrady-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild(TaskbarComponent) taskbar: TaskbarComponent;
+export class AppComponent {
   title = 'desktop';
-
-  constructor(private windowService: WindowService) {}
-
-  ngAfterViewInit(): void {
-    this.windowService.registerTaskbar(this.taskbar);
-  }
 }

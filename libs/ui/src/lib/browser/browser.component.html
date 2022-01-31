@@ -10,7 +10,7 @@
     placeholder="Enter URL here"
     (submit)="go()"
   />
-  <button (click)="go()">Go</button>
+  <button [disabled]="urlControl.pristine" (click)="go()">Go</button>
 </div>
 <div class="page">
   <iframe

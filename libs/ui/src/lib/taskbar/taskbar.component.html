@@ -1,9 +1,9 @@
 <div class="container">
   <button class="start" (click)="openStartMenu()">start</button>
   <div
-    *ngFor="let window of windows"
+    *ngFor="let window of windows$ | async"
     class="window"
-    (click)="maximizeWindow(window)"
+    (click)="toggleWindow(window)"
   >
     <span class="window-title">{{
       formatWindowTitle(window.config.title)

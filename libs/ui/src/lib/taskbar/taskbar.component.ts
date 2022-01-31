@@ -1,18 +1,13 @@
 import { BrowserComponent } from '../browser/browser.component';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  Input,
-} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   LoadingComponent,
   MenuItem,
   WindowComponent,
   WindowService,
 } from '../types';
+import { OpenWindowCommand } from '../window/commands/open-window.command';
+import { ToggleWindowCommand } from '../window/commands/toggle-window.command';
 
 @Component({
   selector: 'dgrbrady-taskbar',
@@ -27,10 +22,10 @@ export class TaskbarComponent {
     {
       text: 'About',
       onClick: () =>
-        this.windowService.open({
+        new OpenWindowCommand(this.windowService, {
           title: 'About',
           component: LoadingComponent,
-        }),
+        }).execute(),
     },
     {
       text: 'Programs',
@@ -38,10 +33,10 @@ export class TaskbarComponent {
         {
           text: 'Browser',
           onClick: () =>
-            this.windowService.open({
+            new OpenWindowCommand(this.windowService, {
               title: 'Browser',
               component: BrowserComponent,
-            }),
+            }).execute(),
         },
       ],
     },
@@ -51,35 +46,28 @@ export class TaskbarComponent {
         {
           text: 'GTFO',
           onClick: () =>
-            this.windowService.open({
+            new OpenWindowCommand(this.windowService, {
               component: BrowserComponent,
-              title: 'Browser',
+              title: 'GTFO',
               inputs: { url: 'https://gtfo.dgrbrady.dev' },
-            }),
+            }).execute(),
         },
         {
           text: 'PM-UI',
           onClick: () =>
-            this.windowService.open({
+            new OpenWindowCommand(this.windowService, {
               component: BrowserComponent,
-              title: 'Browser',
+              title: 'PM-UI',
               inputs: { url: 'https://pm-ui.dgrbrady.dev' },
-            }),
+            }).execute(),
         },
       ],
     },
   ];
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private windowService: WindowService,
-    private cdRef: ChangeDetectorRef
-  ) {}
+  windows$ = this.windowService.windows$;
 
-  addWindow(windowRef: WindowComponent): void {
-    this.windows.push(windowRef);
-    this.cdRef.detectChanges();
-  }
+  constructor(private windowService: WindowService) {}
 
   formatWindowTitle(windowTitle: string): string {
     if (windowTitle === undefined) {
@@ -95,17 +83,7 @@ export class TaskbarComponent {
     this.startMenuOpened = !this.startMenuOpened;
   }
 
-  maximizeWindow(windowRef: WindowComponent): void {
-    // find the index of the incoming WindowComponent
-    const windowIndex = this.windows.findIndex(
-      (taskbarWindowRef) => taskbarWindowRef === windowRef
-    );
-
-    // and if it's found, remove from the taskbar managed windows
-    if (windowIndex > -1) {
-      this.windows.splice(windowIndex, 1);
-      windowRef.windowService.maximizeWindow(windowIndex);
-      this.cdRef.detectChanges();
-    }
+  toggleWindow(windowRef: WindowComponent) {
+    new ToggleWindowCommand(windowRef).execute();
   }
 }

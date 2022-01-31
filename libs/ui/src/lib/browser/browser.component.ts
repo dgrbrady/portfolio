@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { BrowserHistoryService } from './browser-history.service';
 import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -20,15 +19,14 @@ export class BrowserComponent implements AfterViewInit {
   @Input() url: string;
   @ViewChild('iframe') iframe: ElementRef<HTMLIFrameElement>;
   currentUrl$ = this.browserHistoryService.currentHistory$;
-  currentHistorySubscription: Subscription;
   urlControl = new FormControl('');
 
   constructor(private browserHistoryService: BrowserHistoryService) {}
 
   ngAfterViewInit(): void {
     this.browserHistoryService.currentHistory$.subscribe((latest) => {
-      console.log({ latest });
       this.urlControl.setValue(latest);
+      this.urlControl.markAsPristine();
       this.iframe.nativeElement.setAttribute('src', latest);
     });
 

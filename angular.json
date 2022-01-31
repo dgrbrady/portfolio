@@ -50,6 +50,14 @@
             }
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -85,6 +93,9 @@
             "browserTarget": "desktop:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "desktop:build:development"
+            },
             "production": {
               "browserTarget": "desktop:build:production"
             }

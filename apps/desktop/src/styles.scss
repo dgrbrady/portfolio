@@ -49,4 +49,8 @@ body {
     background-color: transparent;
     @include menu-styles();
   }
+
+  .window-pane.minimized {
+    display: none;
+  }
 }
