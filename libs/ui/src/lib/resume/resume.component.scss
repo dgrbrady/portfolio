@@ -1,0 +1,108 @@
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  padding: 0.5rem;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: var(--foreground);
+  color: var(--background);
+  * {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  .header-content {
+    display: flex;
+    flex: 1 1 100%;
+    .main-column {
+      .name {
+        font-size: 2rem;
+      }
+      .summary {
+        padding-right: 4rem;
+      }
+    }
+
+
+    .side-column {
+      .contact-info {
+        * {
+          display: block;
+        }
+      }
+      .resume-download {
+        background-color: var(--primary);
+        text-decoration: none;
+        margin-top: 0.5rem;
+        display: inline-block;
+        padding: 0.5rem;
+        color: var(--foreground);
+      }
+    }
+  }
+
+  .body-content {
+    display: flex;
+    flex: 1 1 100%;
+    padding-bottom: 3rem;
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .main-column {
+      padding-right: 1rem;
+      .employer-info {
+        .bold {
+          font-size: 1.1rem;
+        }
+        .employment-date {
+          margin: 0.5rem 0;
+        }
+      }
+
+      .job-summary {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+        p {
+          margin: 0;
+        }
+        .col-1 {
+          flex: 1 0 10%;
+        }
+        .col-2 {
+          flex: 1 1 90%;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .education-info {
+        margin-bottom: 0.5rem;
+      }
+      .cert-info {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .side-column {
+      border-left: 2px solid var(--primary);
+      padding-left: 0.5rem;
+      background-color: #eee;
+      * {
+        background-color: #eee;
+      }
+    }
+  }
+}
+
+// utility classes
+.main-column {
+  flex: 1 1 75%;
+}
+.side-column {
+  flex: 1 1 25%;
+}
+.bold {
+  font-weight: bold;
+}

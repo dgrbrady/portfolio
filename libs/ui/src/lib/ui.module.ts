@@ -12,6 +12,7 @@ import { WindowComponent } from './window/window.component';
 import { WindowHostDirective } from './window-host.directive';
 import { WindowService } from './types';
 import { AboutComponent } from './about/about.component';
+import { ResumeComponent } from './resume/resume.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { AboutComponent } from './about/about.component';
     TaskbarComponent,
     BrowserComponent,
     AboutComponent,
+    ResumeComponent,
   ],
   exports: [
     LoadingComponent,

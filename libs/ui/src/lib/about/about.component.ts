@@ -12,6 +12,7 @@ export class AboutComponent {
       href: `${this.githubLink}/portfolio`,
       text: 'Source code for this site',
     },
+    { href: '/assets/David_Brady_Resume.pdf', text: 'Download my resume' },
     { href: `${this.githubLink}/fake-news`, text: 'Source code for GTFO' },
     { href: `${this.githubLink}/portfolio`, text: 'Source code for PM-UI' },
     { href: `${this.githubLink}/nvim-lua`, text: 'My NVIM Lua config' },

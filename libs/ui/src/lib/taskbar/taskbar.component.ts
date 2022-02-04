@@ -3,6 +3,7 @@ import { BrowserComponent } from '../browser/browser.component';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MenuItem, WindowComponent, WindowService } from '../types';
 import { OpenWindowCommand } from '../window/commands/open-window.command';
+import { ResumeComponent } from '../resume/resume.component';
 import { ToggleWindowCommand } from '../window/commands/toggle-window.command';
 
 @Component({
@@ -21,6 +22,14 @@ export class TaskbarComponent {
         new OpenWindowCommand(this.windowService, {
           title: 'About.txt',
           component: AboutComponent,
+        }).execute(),
+    },
+    {
+      text: 'Resume.txt',
+      onClick: () =>
+        new OpenWindowCommand(this.windowService, {
+          title: 'Resume.txt',
+          component: ResumeComponent,
         }).execute(),
     },
     {
