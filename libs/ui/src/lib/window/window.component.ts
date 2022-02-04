@@ -15,12 +15,55 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { WindowConfig, WindowSize } from '../types/window';
 import { WindowHostDirective } from '../window-host.directive';
 import { WindowService } from '../services/window.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+
+const WINDOW_OPEN_TIMING = '0.15s ease-in';
+const WINDOW_CLOSE_TIMING = '0.075s ease-out';
 
 @Component({
   selector: 'dgrbrady-window',
   templateUrl: './window.component.html',
   styleUrls: ['./window.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('slide', [
+      state(
+        'open',
+        style({
+          transform: 'scale(1)',
+        })
+      ),
+      state(
+        'minimized',
+        style({
+          transform: 'scale(0)',
+        })
+      ),
+      state(
+        'closed',
+        style({
+          transform: 'translateX(100%)',
+        })
+      ),
+      transition(':enter', [
+        style({ transform: 'translateY(100%)', opacity: '0%' }),
+        animate(
+          WINDOW_OPEN_TIMING,
+          style({ transform: 'translateY(0)', opacity: '100%' })
+        ),
+      ]),
+
+      transition('* => open', [animate(WINDOW_OPEN_TIMING)]),
+      transition('* => closed', [animate(WINDOW_CLOSE_TIMING)]),
+      transition('open => minimized', [animate(WINDOW_CLOSE_TIMING)]),
+    ]),
+  ],
 })
 export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   @Input() config: WindowConfig<T>;
@@ -59,9 +102,11 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
   }
 
   close() {
+    this.state = undefined;
+    this.cdRef.detectChanges();
     this.windowService.close(this);
     this.vcRef.clear();
-    this.overlayRef.dispose();
+    setTimeout(() => this.overlayRef.dispose(), 75);
   }
 
   maximize() {
@@ -109,7 +154,10 @@ export class WindowComponent<T = unknown> implements OnInit, AfterViewInit {
 
   minimize() {
     this.state = 'minimized';
-    this.overlayRef.addPanelClass('minimized');
+    this.cdRef.detectChanges();
+    setTimeout(() => {
+      this.overlayRef.addPanelClass('minimized');
+    }, 75);
   }
 
   captureCurrentSize(): void {
