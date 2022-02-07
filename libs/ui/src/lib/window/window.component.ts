@@ -23,8 +23,9 @@ import {
   trigger,
 } from '@angular/animations';
 
-const WINDOW_OPEN_TIMING = '0.15s ease-in';
-const WINDOW_CLOSE_TIMING = '0.075s ease-out';
+const WINDOW_OPEN_TIMING = '200ms ease-in';
+const WINDOW_CLOSE_TIMING = '150ms ease-out';
+const WINDOW_MINIMIZED_TIMING = '175ms ease-out';
 
 @Component({
   selector: 'dgrbrady-window',
@@ -61,7 +62,7 @@ const WINDOW_CLOSE_TIMING = '0.075s ease-out';
 
       transition('* => open', [animate(WINDOW_OPEN_TIMING)]),
       transition('* => closed', [animate(WINDOW_CLOSE_TIMING)]),
-      transition('open => minimized', [animate(WINDOW_CLOSE_TIMING)]),
+      transition('open => minimized', [animate(WINDOW_MINIMIZED_TIMING)]),
     ]),
   ],
 })
