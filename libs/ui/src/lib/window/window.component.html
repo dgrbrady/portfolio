@@ -8,7 +8,13 @@
     minimized: state === 'minimized',
     maximized: state === 'maximized'
   }"
-  [@slide]="state === 'minimized' ? 'minimized' : state === undefined ? 'closed' : 'open'"
+  [@slide]="
+    state === 'minimized'
+      ? 'minimized'
+      : state === undefined
+      ? 'closed'
+      : 'open'
+  "
 >
   <header class="window-header">
     <h1 class="window-title">{{ config.title }}</h1>
