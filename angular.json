@@ -177,6 +177,18 @@
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/ui/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/ui"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
         }
       },
       "tags": []
