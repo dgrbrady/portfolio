@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "files": [
+    "./plugins/index.ts",
+    "./plugins/webpack.config.ts",
+    "./support/index.ts",
+    "./support/commands.ts"
+  ],
+  "types": ["cypress", "node"]
+}

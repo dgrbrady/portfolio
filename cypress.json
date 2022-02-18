@@ -1,0 +1,6 @@
+{
+  "component": {
+    "componentFolder": "apps/desktop/src/app",
+    "testFiles": "**/*.spec.ts"
+  }
+}

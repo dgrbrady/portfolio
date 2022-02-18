@@ -72,10 +72,10 @@
     {
       "files": ["*.spec.ts"],
       "env": {
-        "jest/globals": true
+        "cypress/globals": true
       },
-      "plugins": ["jest"],
-      "extends": ["plugin:jest/recommended"]
+      "plugins": ["cypress"],
+      "extends": ["plugin:cypress/recommended"]
     }
   ]
 }
