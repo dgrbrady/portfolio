@@ -13,7 +13,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
 import { WindowComponent } from './window/window.component';
 import { WindowHostDirective } from './window-host.directive';
-import { WindowService } from './types';
+import { WindowService } from './services/window.service';
 
 @NgModule({
   imports: [

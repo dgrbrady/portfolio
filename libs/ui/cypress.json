@@ -1,0 +1,6 @@
+{
+  "component": {
+    "componentFolder": "libs/ui/src/lib",
+    "testFiles": "**/*.spec.ts"
+  }
+}

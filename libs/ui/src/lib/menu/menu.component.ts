@@ -13,11 +13,9 @@ import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import { MenuItem } from '../types';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { filter } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 
-@UntilDestroy({ checkProperties: true })
 @Component({
   selector: 'dgrbrady-menu',
   templateUrl: './menu.component.html',
@@ -52,6 +50,7 @@ export class MenuComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.disposeOfMenus();
+    this.clicks.unsubscribe();
   }
 
   onClick(item: MenuItem, liElement: HTMLLIElement): void {

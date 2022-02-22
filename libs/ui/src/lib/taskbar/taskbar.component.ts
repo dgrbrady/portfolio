@@ -1,10 +1,12 @@
 import { AboutComponent } from '../about/about.component';
 import { BrowserComponent } from '../browser/browser.component';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MenuItem, WindowComponent, WindowService } from '../types';
+import { MenuItem } from '../types';
 import { OpenWindowCommand } from '../window/commands/open-window.command';
 import { ResumeComponent } from '../resume/resume.component';
 import { ToggleWindowCommand } from '../window/commands/toggle-window.command';
+import { WindowComponent } from '../window/window.component';
+import { WindowService } from '../services/window.service';
 
 @Component({
   selector: 'dgrbrady-taskbar',
